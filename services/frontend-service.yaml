@@ -1,0 +1,32 @@
+# Please edit the object below. Lines beginning with a '#' will be ignored,
+# and an empty file will abort the edit. If an error occurs while saving this file will be
+# reopened with the relevant failures.
+#
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: "2026-04-06T08:33:52Z"
+  labels:
+    app: httpd-frontend
+  name: httpd-frontend
+  namespace: default
+  resourceVersion: "3834687"
+  uid: 650ff1bb-6da0-4505-9ee5-ebc953e65431
+spec:
+  clusterIP: 10.43.168.113
+  clusterIPs:
+  - 10.43.168.113
+  internalTrafficPolicy: Cluster
+  ipFamilies:
+  - IPv4
+  ipFamilyPolicy: SingleStack
+  ports:
+  - port: 8080
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: httpd-frontend
+  sessionAffinity: None
+  type: ClusterIP
+status:
+  loadBalancer: {}
