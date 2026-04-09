@@ -1,0 +1,80 @@
+Name:             httpd-storage
+Namespace:        default
+Priority:         0
+Service Account:  default
+Node:             ksrv/192.168.178.130
+Start Time:       Tue, 07 Apr 2026 09:06:08 +0000
+Labels:           <none>
+Annotations:      <none>
+Status:           Running
+IP:               10.42.0.117
+IPs:
+  IP:  10.42.0.117
+Containers:
+  httpd:
+    Container ID:   containerd://91912aa7838f6a744e86db4465967228c1d1545c385dc3a466c83ce97874d58d
+    Image:          httpd
+    Image ID:       docker.io/library/httpd@sha256:bdba5c86022f2d6ad0783168b07fe80541fe45e97b434b13ba8c959a5050fb6b
+    Port:           <none>
+    Host Port:      <none>
+    State:          Running
+      Started:      Tue, 07 Apr 2026 09:06:09 +0000
+    Ready:          True
+    Restart Count:  0
+    Environment:    <none>
+    Mounts:
+      /scratch from scratch-volume (rw)
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-slkvc (ro)
+  busybox:
+    Container ID:  containerd://a7b558ef59359104c34cabc127491e225a424ffa54995bd8b05a1260922491ea
+    Image:         busybox
+    Image ID:      docker.io/library/busybox@sha256:1487d0af5f52b4ba31c7e465126ee2123fe3f2305d638e7827681e7cf6c83d5e
+    Port:          <none>
+    Host Port:     <none>
+    Command:
+      /bin/sh
+      -c
+    Args:
+      sleep 1000
+    State:          Running
+      Started:      Tue, 07 Apr 2026 09:06:10 +0000
+    Ready:          True
+    Restart Count:  0
+    Environment:    <none>
+    Mounts:
+      /scratch from scratch-volume (rw)
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-slkvc (ro)
+Conditions:
+  Type                        Status
+  PodReadyToStartContainers   True 
+  Initialized                 True 
+  Ready                       True 
+  ContainersReady             True 
+  PodScheduled                True 
+Volumes:
+  scratch-volume:
+    Type:       EmptyDir (a temporary directory that shares a pod's lifetime)
+    Medium:     
+    SizeLimit:  500Mi
+  kube-api-access-slkvc:
+    Type:                    Projected (a volume that contains injected data from multiple sources)
+    TokenExpirationSeconds:  3607
+    ConfigMapName:           kube-root-ca.crt
+    Optional:                false
+    DownwardAPI:             true
+QoS Class:                   BestEffort
+Node-Selectors:              <none>
+Tolerations:                 node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+                             node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+Events:
+  Type    Reason     Age   From               Message
+  ----    ------     ----  ----               -------
+  Normal  Scheduled  48s   default-scheduler  Successfully assigned default/httpd-storage to ksrv
+  Normal  Pulling    48s   kubelet            Pulling image "httpd"
+  Normal  Pulled     47s   kubelet            Successfully pulled image "httpd" in 787ms (787ms including waiting). Image size: 45240232 bytes.
+  Normal  Created    47s   kubelet            Created container: httpd
+  Normal  Started    47s   kubelet            Started container httpd
+  Normal  Pulling    47s   kubelet            Pulling image "busybox"
+  Normal  Pulled     46s   kubelet            Successfully pulled image "busybox" in 734ms (734ms including waiting). Image size: 2222002 bytes.
+  Normal  Created    46s   kubelet            Created container: busybox
+  Normal  Started    46s   kubelet            Started container busybox
