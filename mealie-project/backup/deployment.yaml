@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    labels:
+        app: mealie
+    name: mealie
+    namespace: mealie
+spec:
+    replicas: 1
+    selector:
+        matchLabels:
+            app: mealie
+    template:
+        metadata:
+            labels:
+                app: mealie
+        spec:
+            containers:
+                - image: ghcr.io/mealie-recipes/mealie:v3.14.0
+                  name: mealie
+                  ports:
+                    - containerPort: 9000
+            volumes:
+                - name: mealie-data
+                  persistentVolumeClaim:
+                    claimName: mealie-data
+            env:
+                - name: SECRET_KEY
+                  secretKeyRef:
+                    name: mealie-secret
+                    key: SECRET_KEY 
+                - name: BASE_URL
+                  value: https://mealie.petrpoulik1492.com
